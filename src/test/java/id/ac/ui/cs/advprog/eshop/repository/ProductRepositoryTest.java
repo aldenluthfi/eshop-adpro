@@ -3,6 +3,7 @@ package id.ac.ui.cs.advprog.eshop.repository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.Iterator;
 
@@ -135,7 +136,7 @@ public class ProductRepositoryTest {
     @Test
     void testFindByIdIfProductNotExist() {
         Product savedProduct = productRepository.findById("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        assertEquals(null, savedProduct);
+        assertNull(savedProduct);
     }
 
     @Test
