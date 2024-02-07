@@ -1,18 +1,22 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
-import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.service.ProductService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
+import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.service.ProductService;
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-
     @Autowired
     private ProductService service;
 
@@ -20,11 +24,11 @@ public class ProductController {
     public String createProductPage(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
-        return "CreateProduct";
+        return "createProduct";
     }
 
     @PostMapping("/create")
-    public String createProductPost(@ModelAttribute Product product, Model model) {
+    public String createProduct(@ModelAttribute Product product, Model model) {
         service.create(product);
         return "redirect:list";
     }
@@ -33,7 +37,12 @@ public class ProductController {
     public String productListPage(Model model) {
         List<Product> allProducts = service.findAll();
         model.addAttribute("products", allProducts);
-        return "ProductList";
+        return "productList";
     }
 
+    @GetMapping("/delete/{productId}")
+    public String deleteProduct(@PathVariable("productId") String productId, Model model) {
+        service.delete(productId);
+        return "redirect:/product/list";
+    }
 }
