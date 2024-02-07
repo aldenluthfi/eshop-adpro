@@ -1,54 +1,47 @@
 package id.ac.ui.cs.advprog.eshop.functional;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
-
 import io.github.bonigarcia.seljup.SeleniumJupiter;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.server.LocalServerPort;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
-
-@SpringBootTest(webEnvironment = RANDOM_PORT)
-@ExtendWith(SeleniumJupiter.class)
-public class HomePageFunctionalTest {
+@SpringBootTest(
+        webEnvironment = WebEnvironment.RANDOM_PORT
+)
+@ExtendWith({SeleniumJupiter.class})
+class HomePageFunctionalTest {
     @LocalServerPort
     private int serverPort;
-
     @Value("${app.baseUrl:http://localhost}")
     private String testBaseUrl;
-
     private String baseUrl;
+
+    HomePageFunctionalTest() {
+    }
 
     @BeforeEach
     void setupTest() {
-        this.baseUrl = String.format("%s:%d", testBaseUrl, serverPort);
+        this.baseUrl = String.format("%s:%d", this.testBaseUrl, this.serverPort);
     }
 
     @Test
-    void createForm_isDisplayed(ChromeDriver driver) throws Exception {
-        driver.get(baseUrl + "/product/create");
+    void pageTitle_isCorrect(ChromeDriver driver) throws Exception {
+        driver.get(this.baseUrl);
         String pageTitle = driver.getTitle();
-        assertEquals("Create New Product", pageTitle);
+        Assertions.assertEquals("ADV Shop", pageTitle);
     }
 
     @Test
-    void createProduct_isSuccessful(ChromeDriver driver) throws Exception {
-        String productName = "Sampo Cap Bambang";
-        driver.get(baseUrl + "/product/create");
-        driver.findElement(By.id("nameInput")).sendKeys(productName);
-        driver.findElement(By.id("quantityInput")).sendKeys("100");
-        driver.findElement(By.tagName("button")).click();
-
-        Thread.sleep(3000);
-        // select the first row of the table and get the first cell
-        String itemName = driver.findElement(By.cssSelector("table tbody tr:first-child td:first-child")).getText();
-        assertEquals(productName, itemName);
+    void welcomeMessage_homePage_isCorrect(ChromeDriver driver) throws Exception {
+        driver.get(this.baseUrl);
+        String welcomeMessage = driver.findElement(By.tagName("h1")).getText();
+        Assertions.assertEquals("Welcome", welcomeMessage);
     }
 }
