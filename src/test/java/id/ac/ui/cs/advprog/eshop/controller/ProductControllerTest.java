@@ -3,6 +3,8 @@ package id.ac.ui.cs.advprog.eshop.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.apache.hc.core5.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -35,7 +37,7 @@ class ProductControllerTest {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/create"))
                 .andReturn().getResponse();
-        assert (response.getStatus() == HttpStatus.SC_OK);
+        assertEquals(response.getStatus(), HttpStatus.SC_OK);
     }
 
     @Test
@@ -47,7 +49,7 @@ class ProductControllerTest {
                                 .contentType("application/json")
                                 .content(json != null ? json : ""))
                 .andReturn().getResponse();
-        assert (response.getStatus() == HttpStatus.SC_MOVED_TEMPORARILY);
+        assertEquals(response.getStatus(), HttpStatus.SC_MOVED_TEMPORARILY);
     }
 
     @Test
@@ -55,7 +57,7 @@ class ProductControllerTest {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/list"))
                 .andReturn().getResponse();
-        assert (response.getStatus() == HttpStatus.SC_OK);
+        assertEquals(response.getStatus(), HttpStatus.SC_OK);
     }
 
     @Test
@@ -73,7 +75,7 @@ class ProductControllerTest {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/edit/1"))
                 .andReturn().getResponse();
-        assert (response.getStatus() == HttpStatus.SC_OK);
+        assertEquals(response.getStatus(), HttpStatus.SC_OK);
 
     }
 
@@ -95,7 +97,7 @@ class ProductControllerTest {
                                 .contentType("application/json")
                                 .content(json != null ? json : ""))
                 .andReturn().getResponse();
-        assert (response.getStatus() == HttpStatus.SC_MOVED_TEMPORARILY);
+        assertEquals(response.getStatus(), HttpStatus.SC_MOVED_TEMPORARILY);
     }
 
     @Test
@@ -103,7 +105,7 @@ class ProductControllerTest {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/edit/69"))
                 .andReturn().getResponse();
-        assert (response.getStatus() == HttpStatus.SC_MOVED_TEMPORARILY);
+        assertEquals(response.getStatus(), HttpStatus.SC_MOVED_TEMPORARILY);
     }
 
     @Test
@@ -120,6 +122,6 @@ class ProductControllerTest {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/delete/1"))
                 .andReturn().getResponse();
-        assert (response.getStatus() == HttpStatus.SC_MOVED_TEMPORARILY);
+        assertEquals(response.getStatus(), HttpStatus.SC_MOVED_TEMPORARILY);
     }
 }
