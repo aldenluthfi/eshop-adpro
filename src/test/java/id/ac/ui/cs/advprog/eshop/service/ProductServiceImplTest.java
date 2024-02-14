@@ -9,13 +9,9 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceImplTest {
-    @InjectMocks
-    ProductRepository productRepository;
-
     @InjectMocks
     ProductServiceImpl productService;
 
@@ -34,7 +30,7 @@ public class ProductServiceImplTest {
     @Test
     void testCreateAddsProductToRepository() {
         productService.create(product);
-        assertEquals(product, productService.findAll().get(0));
+        assertEquals(product, productService.findAll().getFirst());
     }
 
     @Test
