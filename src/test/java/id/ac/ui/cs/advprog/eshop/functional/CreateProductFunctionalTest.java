@@ -17,7 +17,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ExtendWith(SeleniumJupiter.class)
-public class CreateProductFunctionalTest {
+class CreateProductFunctionalTest {
     @LocalServerPort
     private int serverPort;
 
@@ -32,7 +32,7 @@ public class CreateProductFunctionalTest {
     }
 
     @Test
-    void createForm_isDisplayed(ChromeDriver driver) throws Exception {
+    void createForm_isDisplayed(ChromeDriver driver) {
         driver.get(baseUrl + "/product/create");
         String pageTitle = driver.getTitle();
         assertEquals("Create New Product", pageTitle);
