@@ -105,7 +105,7 @@ class ProductControllerTest {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/edit/69"))
                 .andReturn().getResponse();
-        assertEquals(response.getStatus(), HttpStatus.SC_MOVED_TEMPORARILY);
+        assertEquals(HttpStatus.SC_MOVED_TEMPORARILY, response.getStatus());
     }
 
     @Test
