@@ -13,7 +13,7 @@ import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 @Service
 public class ProductServiceImpl implements ProductService {
     @Autowired
-    private ProductRepository productRepository;
+    private ProductRepository productRepository = new ProductRepository();
 
     @Override
     public Product create(Product product) {
