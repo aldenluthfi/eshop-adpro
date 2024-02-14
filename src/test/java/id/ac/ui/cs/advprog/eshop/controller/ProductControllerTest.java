@@ -37,7 +37,7 @@ class ProductControllerTest {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/create"))
                 .andReturn().getResponse();
-        assertEquals(response.getStatus(), HttpStatus.SC_OK);
+        assertEquals(HttpStatus.SC_OK, response.getStatus());
     }
 
     @Test
@@ -49,7 +49,7 @@ class ProductControllerTest {
                                 .contentType("application/json")
                                 .content(json != null ? json : ""))
                 .andReturn().getResponse();
-        assertEquals(response.getStatus(), HttpStatus.SC_MOVED_TEMPORARILY);
+        assertEquals(HttpStatus.SC_MOVED_TEMPORARILY, response.getStatus());
     }
 
     @Test
@@ -57,7 +57,7 @@ class ProductControllerTest {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/list"))
                 .andReturn().getResponse();
-        assertEquals(response.getStatus(), HttpStatus.SC_OK);
+        assertEquals(HttpStatus.SC_OK, response.getStatus());
     }
 
     @Test
@@ -75,7 +75,7 @@ class ProductControllerTest {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/edit/1"))
                 .andReturn().getResponse();
-        assertEquals(response.getStatus(), HttpStatus.SC_OK);
+        assertEquals(HttpStatus.SC_OK, response.getStatus());
 
     }
 
@@ -97,7 +97,7 @@ class ProductControllerTest {
                                 .contentType("application/json")
                                 .content(json != null ? json : ""))
                 .andReturn().getResponse();
-        assertEquals(response.getStatus(), HttpStatus.SC_MOVED_TEMPORARILY);
+        assertEquals(HttpStatus.SC_MOVED_TEMPORARILY, response.getStatus());
     }
 
     @Test
@@ -122,6 +122,6 @@ class ProductControllerTest {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/delete/1"))
                 .andReturn().getResponse();
-        assertEquals(response.getStatus(), HttpStatus.SC_MOVED_TEMPORARILY);
+        assertEquals(HttpStatus.SC_MOVED_TEMPORARILY, response.getStatus());
     }
 }
