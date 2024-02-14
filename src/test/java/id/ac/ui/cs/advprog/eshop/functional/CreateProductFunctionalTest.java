@@ -39,14 +39,13 @@ class CreateProductFunctionalTest {
     }
 
     @Test
-    void createProduct_isSuccessful(ChromeDriver driver) throws Exception {
+    void createProduct_isSuccessful(ChromeDriver driver) {
         String productName = "Sampo Cap Bambang";
         driver.get(baseUrl + "/product/create");
         driver.findElement(By.id("nameInput")).sendKeys(productName);
         driver.findElement(By.id("quantityInput")).sendKeys("100");
         driver.findElement(By.tagName("button")).click();
 
-        Thread.sleep(3000);
         // select the first row of the table and get the first cell
         String itemName = driver.findElement(By.cssSelector("table tbody tr:first-child td:first-child")).getText();
         assertEquals(productName, itemName);

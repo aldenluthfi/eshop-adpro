@@ -19,7 +19,7 @@ import id.ac.ui.cs.advprog.eshop.service.ProductService;
 
 @AutoConfigureJsonTesters
 @WebMvcTest(ProductController.class)
-public class ProductControllerTest {
+class ProductControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
