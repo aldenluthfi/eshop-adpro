@@ -11,8 +11,6 @@ public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
 
     public Product create(Product product) {
-        String productId = productData.size() + 1 + "";
-        product.setProductId(productId);
         productData.add(product);
         return product;
     }
