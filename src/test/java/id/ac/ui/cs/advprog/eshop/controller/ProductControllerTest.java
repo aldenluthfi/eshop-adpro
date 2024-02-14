@@ -31,7 +31,7 @@ public class ProductControllerTest {
     private JacksonTester<Product> jsonProduct;
 
     @Test
-    public void canGetCreateProductPage() throws Exception {
+    void canGetCreateProductPage() throws Exception {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/create"))
                 .andReturn().getResponse();
@@ -39,7 +39,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void canCreateProduct() throws Exception {
+    void canCreateProduct() throws Exception {
         Product product = new Product("Product 1", 10);
         String json = jsonProduct.write(product).getJson();
         MockHttpServletResponse response = mockMvc.perform(
@@ -51,7 +51,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void canGetProductListPage() throws Exception {
+    void canGetProductListPage() throws Exception {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/list"))
                 .andReturn().getResponse();
@@ -59,7 +59,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void canGetEditProductPage() throws Exception {
+    void canGetEditProductPage() throws Exception {
         Product product = new Product("Product 1", 10);
         String json = jsonProduct.write(product).getJson();
         mockMvc.perform(
@@ -78,7 +78,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void canEditProduct() throws Exception {
+    void canEditProduct() throws Exception {
         Product existingProduct = new Product("Product 1", 10);
         String jsonExistingProduct = jsonProduct.write(existingProduct).getJson();
         mockMvc.perform(
@@ -99,7 +99,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void canRedirectWhenEditNotFound() throws Exception {
+    void canRedirectWhenEditNotFound() throws Exception {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/product/edit/69"))
                 .andReturn().getResponse();
@@ -107,7 +107,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void canDeleteProduct() throws Exception {
+    void canDeleteProduct() throws Exception {
         Product product = new Product("Product 1", 10);
         String json = jsonProduct.write(product).getJson();
 
