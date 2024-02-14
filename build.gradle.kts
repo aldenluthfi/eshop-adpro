@@ -86,6 +86,6 @@ sonar {
 	properties {
 		property("sonar.host.url", "https://sonarcloud.io")
 		property("sonar.organization", "aldenluthfi")
-		property("sonar.projectKey", "aldenluthfi_eshop")
+		property("sonar.projectKey", "aldenluthfi_eshop-adpro")
 	}
 }
