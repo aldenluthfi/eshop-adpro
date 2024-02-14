@@ -20,7 +20,7 @@ one test should only have one functionality in one area of the code, but creatin
 
 > List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.
 
-There is surprisingly little issue in my code. There are some modifiers here and there that should've been removed. All in all they're mostly code smells and inconsistencies. I have been very careful when I write code. There is still some smelly code though, I haven't been able to fix them yet.
+There is surprisingly little issue in my code. There are some modifiers here and there that should've been removed. All in all they're mostly code smells and inconsistencies. I have been very careful when I write code. There is still some smelly code though, I haven't been able to fix them just yet.
 
 > Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
 
