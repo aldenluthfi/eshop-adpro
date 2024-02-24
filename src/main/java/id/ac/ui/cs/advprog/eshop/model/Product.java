@@ -3,8 +3,6 @@ package id.ac.ui.cs.advprog.eshop.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.UUID;
-
 @Getter
 @Setter
 public class Product {
@@ -12,14 +10,10 @@ public class Product {
     private String productName;
     private int productQuantity;
 
-    public Product() {
-        this.productId = String.valueOf(UUID.randomUUID());
-    }
+    public Product update(Product newProduct){
+        this.setProductName(newProduct.getProductName());
+        this.setProductQuantity(newProduct.getProductQuantity());
 
-    public Product(String productName, int productQuantity) {
-        this.productId = String.valueOf(UUID.randomUUID());
-        this.productName = productName;
-        this.productQuantity = productQuantity;
+        return this;
     }
-
 }
