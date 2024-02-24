@@ -42,7 +42,8 @@ class ProductControllerTest {
 
     @Test
     void canCreateProduct() throws Exception {
-        Product product = new Product("Product 1", 10);
+        Product product = new Product();
+
         String json = jsonProduct.write(product).getJson();
         MockHttpServletResponse response = mockMvc.perform(
                         post("/product/create")
@@ -62,7 +63,7 @@ class ProductControllerTest {
 
     @Test
     void canGetEditProductPage() throws Exception {
-        Product product = new Product("Product 1", 10);
+        Product product = new Product();
         String json = jsonProduct.write(product).getJson();
         mockMvc.perform(
                         post("/product/create")
@@ -81,7 +82,7 @@ class ProductControllerTest {
 
     @Test
     void canEditProduct() throws Exception {
-        Product existingProduct = new Product("Product 1", 10);
+        Product existingProduct = new Product();
         String jsonExistingProduct = jsonProduct.write(existingProduct).getJson();
         mockMvc.perform(
                         post("/product/create")
@@ -89,7 +90,7 @@ class ProductControllerTest {
                                 .content(jsonExistingProduct != null ? jsonExistingProduct : ""))
                 .andReturn().getResponse();
 
-        Product updatedProduct = new Product("Product 1", 20);
+        Product updatedProduct = new Product();
 
         String json = jsonProduct.write(updatedProduct).getJson();
         MockHttpServletResponse response = mockMvc.perform(
@@ -110,7 +111,7 @@ class ProductControllerTest {
 
     @Test
     void canDeleteProduct() throws Exception {
-        Product product = new Product("Product 1", 10);
+        Product product = new Product();
         String json = jsonProduct.write(product).getJson();
 
         mockMvc.perform(
