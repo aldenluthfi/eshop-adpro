@@ -13,15 +13,26 @@ public class OrderServiceImpl implements OrderService{
     @Autowired
     private OrderRepository orderRepository;
     public Order createOrder(Order order){
+        if (orderRepository.findById(order.getId())==null){
+            orderRepository.save(order);
+            return order;
+        }
         return null;
     }
     public Order updateStatus(String orderId, String status){
-        return null;
+        Order order = orderRepository.findById(orderId);
+        if (order != null) {
+            Order newOrder = new Order(order.getId(), order.getProducts(), order.getOrderTime(), order.getAuthor(), status);
+            orderRepository.save(newOrder);
+            return  newOrder;
+        }else{
+            throw new NoSuchElementException();
+        }
     }
     public Order findById(String orderId){
-        return null;
+        return orderRepository.findById(orderId);
     }
     public List<Order> findAllByAuthor(String author){
-        return null;
+        return orderRepository.findAllByAuthor(author);
     }
 }
