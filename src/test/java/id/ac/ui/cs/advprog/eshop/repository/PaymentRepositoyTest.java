@@ -12,15 +12,15 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PaymentRepositoryTest {
-    PaymentRepository paymentRepository;
+public class PaymentRepositoyTest {
+    PaymentRepositoy paymentRepositoy;
     List<Payment> payments;
     List<Product> products;
     List<Order> orders;
 
     @BeforeEach
     void setUp(){
-        paymentRepository = new PaymentRepository();
+        paymentRepositoy = new PaymentRepositoy();
 
         payments = new ArrayList<>();
         orders = new ArrayList<>();
@@ -61,9 +61,9 @@ public class PaymentRepositoryTest {
     @Test
     void testAddPaymentSuccess(){
         Payment payment = payments.get(1);
-        Payment result = paymentRepository.save(payment);
+        Payment result = paymentRepositoy.save(payment);
 
-        Payment findResult = paymentRepository.findById(payments.get(1).getId());
+        Payment findResult = paymentRepositoy.findById(payments.get(1).getId());
         assertEquals(payment.getId(), result.getId());
         assertEquals(payment.getId(), findResult.getId());
         assertEquals(payment.getMethod(), findResult.getMethod());
@@ -75,9 +75,9 @@ public class PaymentRepositoryTest {
     @Test
     void testAddPaymentVoucherSuccess(){
         Payment payment = payments.get(2);
-        Payment result = paymentRepository.save(payment);
+        Payment result = paymentRepositoy.save(payment);
 
-        Payment findResult = paymentRepository.findById(payments.get(2).getId());
+        Payment findResult = paymentRepositoy.findById(payments.get(2).getId());
         assertEquals(payment.getId(), result.getId());
         assertEquals(payment.getId(), findResult.getId());
         assertEquals(payment.getMethod(), findResult.getMethod());
@@ -89,21 +89,21 @@ public class PaymentRepositoryTest {
     @Test
     void testAddPaymentDuplicatedId(){
         Payment payment1 = payments.get(1);
-        Payment result = paymentRepository.save(payment1);
+        Payment result = paymentRepositoy.save(payment1);
 
         Payment payment2 = new Payment(payment1.getId(), payment1.getOrder(), payment1.getMethod(), payment1.getPaymentData());
 
         assertThrows(IllegalStateException.class, ()->{
-            paymentRepository.save(payment2);
+            paymentRepositoy.save(payment2);
         });
     }
 
     @Test
     void testFindByIdIfIdFound(){
         for (Payment payment : payments){
-            paymentRepository.save(payment);
+            paymentRepositoy.save(payment);
         }
-        Payment findResult = paymentRepository.findById(payments.get(1).getId());
+        Payment findResult = paymentRepositoy.findById(payments.get(1).getId());
         assertEquals(payments.get(1).getId(), findResult.getId());
         assertSame(payments.get(1).getPaymentData(), findResult.getPaymentData());
         assertSame(payments.get(1).getOrder(), findResult.getOrder());
@@ -113,15 +113,15 @@ public class PaymentRepositoryTest {
 
     @Test
     void testFindByIdIfIdNotFound(){
-        assertNull(paymentRepository.findById("zczc"));
+        assertNull(paymentRepositoy.findById("zczc"));
     }
 
     @Test
     void testGetAllPayments(){
         for (Payment payment : payments){
-            paymentRepository.save(payment);
+            paymentRepositoy.save(payment);
         }
-        List<Payment> result = paymentRepository.getAllPayments();
+        List<Payment> result = paymentRepositoy.getAllPayments();
         assertEquals(4, result.size());
     }
 }
