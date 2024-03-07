@@ -78,3 +78,13 @@ I have implemented thorough tests and checks and also have automated deployment.
    - **Increased Technical Debt:**
       - Over time, the consequences of not applying SOLID principles can accumulate, leading to increased technical debt. Technical debt refers to the long-term cost of maintaining and adapting poorly designed code, and it can slow down the development process.
 
+### Refleksi 3
+
+> Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.
+
+TDD is enough as a sanity check for me to ensure the usability of my program. Though I hope I will improve in making tests before implementation
+
+> You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+
+I think my tests are sufficiently Fast, Isolated, Repeatable, Self Validating and Thorough. though for the last part, there are still some classes that are not covered in tests so it might be not very thorough, but the classes that are covered by tests are fully covered
+
